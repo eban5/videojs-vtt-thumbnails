@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/@eban5%2Fvideojs-vtt-thumbnails.svg)](https://badge.fury.io/js/@eban5%2Fvideojs-vtt-thumbnails)
+
 # videojs-vtt-thumbnails
 
 This repository is a fork of https://github.com/chrisboustead/videojs-vtt-thumbnails.
