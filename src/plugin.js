@@ -1,6 +1,5 @@
 import videojs from 'video.js';
 import { version as VERSION } from '../package.json';
-// import request from 'request';
 
 // Default options for the plugin.
 const defaults = {};
@@ -191,7 +190,12 @@ class vttThumbnailsPlugin {
     const thumbHolder = document.createElement('div');
 
     thumbHolder.setAttribute('class', 'vjs-vtt-thumbnail-display');
-    this.progressBar = this.player.$('.vjs-progress-control');
+    
+    // this.progressBar = this.player.$('.vjs-progress-control');
+    // Using '.vjs-progress-holder' instead of 'vjs-progress-control' helps 
+    // when you add left and right margins to progress bar style. 
+    this.progressBar = this.player.$('.vjs-progress-holder');
+    
     this.progressBar.appendChild(thumbHolder);
     this.thumbnailHolder = thumbHolder;
 
@@ -440,6 +444,15 @@ class vttThumbnailsPlugin {
       (timestampParts.milliseconds / 1000), 10);
   }
 
+  // alternate function that uses milliseconds instead of seconds
+  getMillisecondsFromTimestamp (timestamp) {
+    const timestampParts = this.deconstructTimestamp(timestamp)
+    return (timestampParts.hours * (60 * 60)) +
+      (timestampParts.minutes * 60) +
+      timestampParts.seconds +
+      (timestampParts.milliseconds / 1000);
+  }
+
   /**
    * trim
    *
@@ -504,4 +517,4 @@ registerPlugin('vttThumbnails', vttThumbnails);
 // Include the version number.
 vttThumbnails.VERSION = VERSION;
 
-export default vttThumbnails;
+export { vttThumbnails as default };
